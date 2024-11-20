@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 20:29:25 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/20 15:43:19 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/20 21:54:13 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	ft_init_fractal(t_fractal *fractal)
 	fractal->real = 0.0;
 	fractal->imag = 0.0;
 	fractal->color = 0xFCBE11; // Should be orange
-	fractal->picture = NULL;
+	fractal->pic = NULL;
+	fractal->tex = NULL;
 	fractal->mlx = NULL;
 }
 

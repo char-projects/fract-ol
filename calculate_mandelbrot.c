@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:41:43 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/20 15:27:29 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/20 22:55:20 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,8 @@ int	ft_mandelbrot(t_fractal *fractal, t_fractal	c)
 	t_fractal	z;
 
 	i = 0;
-	// Initialize real and imag to avoid undefined behavior
 	z.real = 0.0;
-	z.imag = 0.0;
-	// c constants are set to the coordinates of the pixel - HOW?
-	// fractal->c = x.y;
+    z.imag = 0.0;
 	// Iterate suite until:
 	// -> Abs(z) >= system's max value
 	// -> Number of iterations is too high (infinite loop)
@@ -48,12 +45,16 @@ int	ft_mandelbrot(t_fractal *fractal, t_fractal	c)
 		z.imag += c.imag;
 		i++;
 	}
-	// draw_random(0, 0, fractal);
+	fractal->real = c.real;
+	fractal->imag = c.imag;
 	// If max iteration, color the pixel black
 	if (i == MAX)
-		ft_color_pixel(fractal, 0x000000);
+		ft_color_pixel(fractal, z.real, z.imag, 0x000000);
 	// Else, multiply the color by the number of iterations
 	else
-		ft_color_pixel(fractal, (fractal->color * i));
+	{
+		fractal->color = 0x010101 * (i % 255);
+		ft_color_pixel(fractal, z.real, z.imag, fractal->color * (i / (double)MAX));
+	}
 	return (i);
 }

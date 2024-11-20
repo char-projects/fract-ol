@@ -6,13 +6,13 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:20:39 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/20 15:50:17 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/20 22:25:36 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-// This function closes the window when you press the escape key
+// Closes window when ESC is pressed - Done
 void	ft_esc_win(mlx_key_data_t keydata, void *param)
 {
 	t_fractal	*fractal;
@@ -25,29 +25,25 @@ void	ft_esc_win(mlx_key_data_t keydata, void *param)
 	}
 }
 
+// Done
 void	ft_mlx_error(void)
 {
 	ft_printf("Error creating the window\n");
 	exit(EXIT_FAILURE);
 }
 
-// Initialize MLX - This opens the window
+// Initialize MLX - Done, I think
 void	ft_init_win(t_fractal *fractal)
 {
 	fractal->mlx = mlx_init(WIDTH, HEIGHT, "fract-ol", true);
 	if (!fractal->mlx)
 		ft_mlx_error();
-	// FIND A WAY TO DO IT WITHOUT THE PNG !!!
-	/* fractal->path = "test.png";
-	mlx_texture_t *texture = mlx_load_png(fractal->path);
-	if (!texture)
+	fractal->pic = mlx_new_image(fractal->mlx, WIDTH, HEIGHT);
+	if (!fractal->pic)
 		ft_mlx_error();
-	fractal->picture = mlx_texture_to_image(fractal->mlx, texture);
-	if (!fractal->picture)
+	if (mlx_image_to_window(fractal->mlx, fractal->pic, 0, 0) < 0)
 		ft_mlx_error();
-	if (mlx_image_to_window(fractal->mlx, fractal->picture, 1, 1))
-		ft_mlx_error(); */
+	ft_draw_mandelbrot(fractal);
 	mlx_key_hook(fractal->mlx, ft_esc_win, fractal);
-	mlx_loop_hook(fractal->mlx, ft_draw_mandelbrot, fractal);
 	mlx_loop(fractal->mlx);
 }

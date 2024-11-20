@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 14:43:22 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/20 15:49:46 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/20 22:43:05 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_draw_mandelbrot(void *fractal_void)
 {
+	ft_printf("Drawing Mandelbrot...\n");
 	t_fractal	*fractal;
 	t_fractal	c;
 	int			x;
@@ -33,31 +34,14 @@ void	ft_draw_mandelbrot(void *fractal_void)
 		}
 		y++;
 	}
+	ft_printf("Finished drawing Mandelbrot\n");
 }
 
-/* Just a test
-void	draw_random(int x, int y, t_fractal *fractal)
+void	ft_color_pixel(t_fractal *fractal, int x, int y, int color)
 {
-	ft_printf("5. Reached draw random\n");
-	fractal->picture = malloc(sizeof(fractal));
-	while (x < WIDTH)
-	{
-		while (y < HEIGHT)
-		{
-			mlx_put_pixel(fractal->picture, x, y, 0xFFFFA500);
-			y++;
-		}
-		x++;
-	}
-} */
-
-void	ft_color_pixel(t_fractal *fractal, int color)
-{
-	int x;
-	int y;
-
-	x = fractal->real;
-	y = fractal->imag;
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
-		mlx_put_pixel(fractal->picture, x, y, color);
+	{
+		mlx_put_pixel(fractal->pic, x, y, color);
+		ft_printf("Coloring pixel at (%d, %d) with color %x\n", x, y, color);
+	}	
 }

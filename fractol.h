@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:42:08 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/20 15:32:23 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/20 22:29:28 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef struct s_fractal
 	double		real; // x axis
 	double		tmp_i;
 	double		tmp_r;
-	mlx_image_t	*picture;
+	mlx_image_t	*pic;
+	mlx_texture_t *tex;
 	mlx_t		*mlx;
 	int			color;
 	const char	*path;
@@ -54,6 +55,6 @@ void			ft_mlx_error(void);
 // Draw fractal
 void			ft_init_fractal(t_fractal *fractal);
 void			ft_draw_mandelbrot(void *fractal_void);
-void    		ft_color_pixel(t_fractal *fractal, int color);
+void	ft_color_pixel(t_fractal *fractal, int x, int y, int color);
 
 #endif
