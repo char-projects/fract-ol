@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:20:39 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/18 23:56:37 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:50:17 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	ft_init_win(t_fractal *fractal)
 	fractal->mlx = mlx_init(WIDTH, HEIGHT, "fract-ol", true);
 	if (!fractal->mlx)
 		ft_mlx_error();
+	// FIND A WAY TO DO IT WITHOUT THE PNG !!!
 	/* fractal->path = "test.png";
 	mlx_texture_t *texture = mlx_load_png(fractal->path);
 	if (!texture)

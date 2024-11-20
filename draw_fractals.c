@@ -6,18 +6,11 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 14:43:22 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/18 23:57:56 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:49:46 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	init_fractal(t_fractal *fractal)
-{
-	fractal->real = 0;
-	fractal->imag = 0;
-	fractal->color = 0xFCBE11; // Should be orange
-}
 
 void	ft_draw_mandelbrot(void *fractal_void)
 {
@@ -27,10 +20,10 @@ void	ft_draw_mandelbrot(void *fractal_void)
 	int			y;
 
 	fractal = (t_fractal *)fractal_void;
-	x = 0;
 	y = 0;
 	while (y < HEIGHT)
 	{
+		x = 0;
 		while (x < WIDTH)
 		{
 			c.real = ft_map_to_real(x, -2.0, 2.0);
@@ -57,9 +50,14 @@ void	draw_random(int x, int y, t_fractal *fractal)
 		x++;
 	}
 } */
-// Change this useless function
+
 void	ft_color_pixel(t_fractal *fractal, int color)
 {
-	(void)fractal;
-	(void)color;
+	int x;
+	int y;
+
+	x = fractal->real;
+	y = fractal->imag;
+	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
+		mlx_put_pixel(fractal->picture, x, y, color);
 }
