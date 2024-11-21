@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:20:39 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/21 22:19:42 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/21 23:34:06 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,18 @@ Allocated resources (e.g., mlx_image_t) are never freed
 
 #include "fractol.h"
 
-/* Assign keys to zoom
-void	ft_zoom()
+// Assign keys to zoom - Where do I call it?
+void	ft_zoom(mlx_key_data_t keydata, t_fractal *fractal)
 {
-	
-} */
+	if (keydata.key == MLX_KEY_LEFT)
+		fractal->offset_x -= 500 / fractal->zoom;
+	else if (keydata.key == MLX_KEY_RIGHT)
+		fractal->offset_x += 500 / fractal->zoom;
+	else if (keydata.key == MLX_KEY_UP)
+		fractal->offset_y -= 500 / fractal->zoom;
+	else if (keydata.key == MLX_KEY_DOWN)
+		fractal->offset_y += 500 / fractal->zoom;
+}
 
 // Closes window when ESC is pressed - Done
 void	ft_esc_win(mlx_key_data_t keydata, void *param)
