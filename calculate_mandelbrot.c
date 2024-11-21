@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:41:43 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/20 22:55:20 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:17:26 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,40 +21,37 @@ t_fractal	ft_square(t_fractal z)
 	return (res);
 }
 
-double	ft_magnitude(t_fractal z)
-{
-	// Magnitude of z / distance from origin
-	return ((z.real * z.real) + (z.imag * z.imag));
-}
-
-int	ft_mandelbrot(t_fractal *fractal, t_fractal	c)
+int	ft_mandelbrot(t_fractal fractal, t_fractal c)
 {
 	int			i;
 	t_fractal	z;
+	t_fractal	temp_z;
 
 	i = 0;
+	// Initialize z to the origin
 	z.real = 0.0;
     z.imag = 0.0;
-	// Iterate suite until:
-	// -> Abs(z) >= system's max value
-	// -> Number of iterations is too high (infinite loop)
-	while (ft_magnitude(z) <= 4 && i < MAX)
+	// Iterate while |z|^2 <= 4 and the maximum iteration limit isn't reached
+	while (((z.real * z.real) + (z.imag * z.imag)) <= 4 && i < MAX)
 	{
-		z = ft_square(z);
-		z.real += c.real;
-		z.imag += c.imag;
+		temp_z = z;
+
+		// Calculate z = z^2 + c
+		z.real = (temp_z.real * temp_z.real) - (temp_z.imag * temp_z.imag) + c.real;
+		z.imag = 2 * temp_z.real * temp_z.imag + c.imag;
+
 		i++;
 	}
-	fractal->real = c.real;
-	fractal->imag = c.imag;
 	// If max iteration, color the pixel black
 	if (i == MAX)
-		ft_color_pixel(fractal, z.real, z.imag, 0x000000);
+		ft_color_pixel(&fractal, (c.real - fractal.offset_x) * fractal.zoom,
+                       (c.imag - fractal.offset_y) * fractal.zoom, 0x000000);
 	// Else, multiply the color by the number of iterations
 	else
 	{
-		fractal->color = 0x010101 * (i % 255);
-		ft_color_pixel(fractal, z.real, z.imag, fractal->color * (i / (double)MAX));
+		fractal.color = 0x010101 * (i % 256);
+		ft_color_pixel(&fractal, (c.real - fractal.offset_x) * fractal.zoom,
+                       (c.imag - fractal.offset_y) * fractal.zoom, fractal.color);
 	}
 	return (i);
 }

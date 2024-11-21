@@ -6,9 +6,15 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 20:29:25 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/20 21:54:13 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/21 21:10:19 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* Fix Memory Leaks:
+Allocated resources (e.g., mlx_image_t) are never freed
+Use mlx_delete_image() and other MLX42 cleanup functions
+in ft_esc_win and at program termination
+*/
 
 #include "fractol.h"
 
@@ -17,9 +23,13 @@ void	ft_init_fractal(t_fractal *fractal)
 	fractal->real = 0.0;
 	fractal->imag = 0.0;
 	fractal->color = 0xFCBE11; // Should be orange
+	fractal->zoom = 300;
+	fractal->offset_x = -1.21;
+	fractal->offset_y = -1.21;
 	fractal->pic = NULL;
 	fractal->tex = NULL;
 	fractal->mlx = NULL;
+	
 }
 
 void	ft_which_fractal(t_fractal *fractal, char *type)

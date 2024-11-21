@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:20:39 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/20 22:25:36 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:18:56 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_init_win(t_fractal *fractal)
 	fractal->pic = mlx_new_image(fractal->mlx, WIDTH, HEIGHT);
 	if (!fractal->pic)
 		ft_mlx_error();
-	if (mlx_image_to_window(fractal->mlx, fractal->pic, 0, 0) < 0)
+	if (mlx_image_to_window(fractal->mlx, fractal->pic, 0.0, 0.0) < 0.0)
 		ft_mlx_error();
 	ft_draw_mandelbrot(fractal);
 	mlx_key_hook(fractal->mlx, ft_esc_win, fractal);
