@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:41:43 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/21 21:17:26 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/21 22:32:48 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,8 @@ int	ft_mandelbrot(t_fractal fractal, t_fractal c)
 
 		i++;
 	}
-	// If max iteration, color the pixel black
-	if (i == MAX)
-		ft_color_pixel(&fractal, (c.real - fractal.offset_x) * fractal.zoom,
-                       (c.imag - fractal.offset_y) * fractal.zoom, 0x000000);
-	// Else, multiply the color by the number of iterations
-	else
-	{
-		fractal.color = 0x010101 * (i % 256);
-		ft_color_pixel(&fractal, (c.real - fractal.offset_x) * fractal.zoom,
-                       (c.imag - fractal.offset_y) * fractal.zoom, fractal.color);
-	}
+	fractal.color = 0xFCBE11 * (i % 256);
+	ft_color_pixel(&fractal, (c.real - fractal.offset_x) * fractal.zoom,
+                    (c.imag - fractal.offset_y) * fractal.zoom, fractal.color);
 	return (i);
 }
