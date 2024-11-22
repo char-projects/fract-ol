@@ -6,18 +6,37 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 14:43:22 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/22 14:21:34 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:10:45 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Change color OUTSIDE of fractal to something other than black
+// Build something that changes the colors
 
 #include "fractol.h"
 
-void	ft_draw_julia(void *fractal_void)
+void	ft_zoom(t_fractal *fractal, int x, int y, int zoom)
 {
-	(void)fractal_void;
-	exit(EXIT_FAILURE);
+	double	scale;
+
+	scale = 1.5;
+	if (zoom == 1)
+	{
+		fractal->offset_x = (x / fractal->zoom + fractal->offset_x) - (x
+				/ (fractal->zoom * scale));
+		fractal->offset_y = (y / fractal->zoom + fractal->offset_y) - (y
+				/ (fractal->zoom * scale));
+		fractal->zoom *= scale;
+	}
+	else if (zoom == -1)
+	{
+		fractal->offset_x = (x / fractal->zoom + fractal->offset_x) - (x
+				/ (fractal->zoom / scale));
+		fractal->offset_y = (y / fractal->zoom + fractal->offset_y) - (y
+				/ (fractal->zoom / scale));
+		fractal->zoom /= scale;
+	}
+	else
+		return ;
 }
 
 void	ft_color_pixel(t_fractal *fractal, int x, int y, int color)

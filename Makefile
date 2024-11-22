@@ -1,7 +1,7 @@
 NAME    = fractol
 
 CFLAGS  = -Wall -Wextra -Werror
-SRC		= main.c map_to_real.c mandelbrot.c mlx_win.c draw_fractals.c
+SRC		= main.c map_to_real.c mandelbrot.c mlx_win.c draw_fractals.c julia.c
 OBJ		= ${SRC:.c=.o}
 LIBFT = libft/libft.a
 MLX = MLX42/libmlx42.a

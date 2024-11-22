@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:42:08 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/22 14:03:15 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:15:39 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ typedef struct s_fractal
 	const char		*path;
 }					t_fractal;
 
-// Calculate Mandelbrot
+// Mandelbrot
 t_fractal			ft_square(t_fractal z);
 int					ft_mandelbrot(t_fractal fractal, t_fractal c);
+void				ft_draw_mandelbrot(void *fractal_void);
 
 // Map to real
 double				ft_map_to_real(int x, double min_real, double max_real);
@@ -55,9 +56,12 @@ void				ft_keys(mlx_key_data_t keydata, void *param);
 void				ft_init_win(t_fractal *fractal, char *type);
 void				ft_mlx_error(void);
 
-// Draw fractal
-void				ft_draw_mandelbrot(void *fractal_void);
-void				ft_draw_julia(void *fractal_void);
+// Draw fractals
+void				ft_zoom(t_fractal *fractal, int x, int y, int zoom);
 void				ft_color_pixel(t_fractal *fractal, int x, int y, int color);
+
+// Julia
+void				ft_draw_julia(void *fractal_void);
+int    				ft_julia(t_fractal fractal, t_fractal z);
 
 #endif

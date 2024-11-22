@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:20:39 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/22 14:47:15 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:20:24 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,33 +42,32 @@ void	ft_keys(mlx_key_data_t keys, void *param)
 		fractal->offset_y += 500 / fractal->zoom;
 }
 
-void	ft_zoom(double up, double down, void *param)
+void	ft_scroll(double up, double down, void *param)
 {
-	//t_fractal	*fractal;
+	t_fractal	*fractal;
 
-	//fractal = (t_fractal *)param;
-	(void)param;
+	fractal = (t_fractal *)param;
 	if (down > 0)
 	{
 		ft_printf("Up\n");
-		// zoom(fractal, up, down, 1);
+		ft_zoom(fractal, up, down, 1);
 	}
 	else if (down < 0)
 	{
 		ft_printf("Down\n");
-		//zoom(fractal, up, down, -1);
+		ft_zoom(fractal, up, down, -1);
 	}
 	// This part is just if the mouse wheel can move sideways
-	// Not really necessary
+	// Not really necessary but needed for function signature
 	else if (up > 0)
 	{
 		ft_printf("Up\n");
-		//zoom(fractal, up, down, -1);
+		ft_zoom(fractal, up, down, -1);
 	}
 	else if (up < 0)
 	{
 		ft_printf("Down\n");
-		//zoom(fractal, up, down, -1);
+		ft_zoom(fractal, up, down, -1);
 	}
 }
 
@@ -92,7 +91,7 @@ void	ft_init_win(t_fractal *fractal, char *type)
 		ft_mlx_error();
 	ft_which_fractal(fractal, type);
 	mlx_key_hook(fractal->mlx, ft_keys, fractal);
-	mlx_scroll_hook(fractal->mlx, ft_zoom, fractal);
+	mlx_scroll_hook(fractal->mlx, ft_scroll, fractal);
 	mlx_loop(fractal->mlx);
 	mlx_delete_image(fractal->mlx, fractal->pic);
 }
