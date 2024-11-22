@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:42:08 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/22 15:15:39 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:44:58 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FRACTOL_H
 
 # define MAX 500
+// Height and width probably shouldn't be hardcoded
+// Maybe I can find an MLX function to adjust the window size
 # define WIDTH 800
 # define HEIGHT 600
 
@@ -62,6 +64,6 @@ void				ft_color_pixel(t_fractal *fractal, int x, int y, int color);
 
 // Julia
 void				ft_draw_julia(void *fractal_void);
-int    				ft_julia(t_fractal fractal, t_fractal z);
+int    				ft_julia(t_fractal fractal);
 
 #endif

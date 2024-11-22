@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:41:43 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/22 14:21:25 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:39:16 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	ft_mandelbrot(t_fractal fractal, t_fractal c)
 		// Calculate z = z^2 + c
 		z.real = (temp_z.real * temp_z.real) - (temp_z.imag * temp_z.imag) + c.real;
 		z.imag = 2 * temp_z.real * temp_z.imag + c.imag;
-
 		i++;
 	}
 	fractal.color = 0xFCBE11 * (i % 256);
