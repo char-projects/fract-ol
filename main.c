@@ -6,11 +6,20 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 20:29:25 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/21 22:32:09 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/22 19:33:18 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+// I feel like at this point the valgrind errors are coming from the MLX
+void	ft_exit_fractal(t_fractal *fractal)
+{
+	mlx_delete_image(fractal->mlx, fractal->pic);
+	mlx_close_window(fractal->mlx);
+	free(fractal->mlx);
+	exit(1);
+}
 
 void	ft_init_fractal(t_fractal *fractal)
 {
@@ -38,7 +47,7 @@ void	ft_which_fractal(t_fractal *fractal, char *type)
 	else
 	{
 		ft_printf("Fractal type not supported!\n");
-		exit(EXIT_FAILURE);
+		ft_exit_fractal(fractal);
 	}
 }
 
@@ -52,10 +61,9 @@ int	main(int argc, char *argv[])
 		ft_printf("Usage: ./fractol <fractal>\n");
 		ft_printf("Available fractals:");
 		ft_printf(" mandelbrot(m), julia(j), burningship(b)\n");
-		return (EXIT_FAILURE);
+		return (1);
 	}
 	// Free fractal later!!
 	ft_init_fractal(&fractal);
 	ft_init_win(&fractal, argv[1]);
-	return (EXIT_SUCCESS);
 }

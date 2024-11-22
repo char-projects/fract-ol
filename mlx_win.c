@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:20:39 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/22 15:20:24 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/22 19:27:25 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,7 @@ void	ft_keys(mlx_key_data_t keys, void *param)
 
 	fractal = (t_fractal *)param;
 	if (keys.key == MLX_KEY_ESCAPE)
-	{
-		mlx_close_window(fractal->mlx);
-		mlx_delete_image(fractal->mlx, fractal->pic);
-		exit(EXIT_FAILURE);
-	}
+		ft_exit_fractal(fractal);
 	// Remove MLX_PRESS if you want to zoom continously and not just once
 	else if ((keys.key == MLX_KEY_LEFT || keys.key == MLX_KEY_A)
 		&& keys.action == MLX_PRESS)
@@ -93,5 +89,5 @@ void	ft_init_win(t_fractal *fractal, char *type)
 	mlx_key_hook(fractal->mlx, ft_keys, fractal);
 	mlx_scroll_hook(fractal->mlx, ft_scroll, fractal);
 	mlx_loop(fractal->mlx);
-	mlx_delete_image(fractal->mlx, fractal->pic);
+	ft_exit_fractal(fractal);
 }

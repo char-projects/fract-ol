@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:42:08 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/22 15:44:58 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/22 19:41:01 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ double				ft_map_to_real(int x, double min_real, double max_real);
 double				ft_map_to_imag(int y, double min_imag, double max_imag);
 
 // Main
+void				ft_exit_fractal(t_fractal *fractal);
 void				ft_which_fractal(t_fractal *fractal, char *type);
 void				ft_init_fractal(t_fractal *fractal);
 
@@ -64,6 +65,6 @@ void				ft_color_pixel(t_fractal *fractal, int x, int y, int color);
 
 // Julia
 void				ft_draw_julia(void *fractal_void);
-int    				ft_julia(t_fractal fractal);
+int					ft_julia(t_fractal *fractal, t_fractal c);
 
 #endif
