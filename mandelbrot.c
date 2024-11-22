@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calculate_mandelbrot.c                             :+:      :+:    :+:   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:41:43 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/21 22:32:48 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/22 14:21:25 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,30 @@ int	ft_mandelbrot(t_fractal fractal, t_fractal c)
 	ft_color_pixel(&fractal, (c.real - fractal.offset_x) * fractal.zoom,
                     (c.imag - fractal.offset_y) * fractal.zoom, fractal.color);
 	return (i);
+}
+
+void	ft_draw_mandelbrot(void *fractal_void)
+{
+	t_fractal	*fractal;
+	t_fractal	c;
+	int			x;
+	int			y;
+
+	fractal = (t_fractal *)fractal_void;
+	fractal->zoom = 200.0; // Adjust to fit the desired view
+    fractal->offset_x = -2.0;
+    fractal->offset_y = -2.0;
+	y = 0;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			c.real = ft_map_to_real(x, fractal->offset_x, fractal->offset_x + WIDTH / fractal->zoom);
+			c.imag = ft_map_to_imag(y, fractal->offset_y, fractal->offset_y + HEIGHT / fractal->zoom);
+			ft_mandelbrot(*fractal, c);
+			x++;
+		}
+		y++;
+	}
 }

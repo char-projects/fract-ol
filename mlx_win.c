@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:20:39 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/21 23:34:06 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/22 14:47:15 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,59 @@ Allocated resources (e.g., mlx_image_t) are never freed
 
 #include "fractol.h"
 
-// Assign keys to zoom - Where do I call it?
-void	ft_zoom(mlx_key_data_t keydata, t_fractal *fractal)
-{
-	if (keydata.key == MLX_KEY_LEFT)
-		fractal->offset_x -= 500 / fractal->zoom;
-	else if (keydata.key == MLX_KEY_RIGHT)
-		fractal->offset_x += 500 / fractal->zoom;
-	else if (keydata.key == MLX_KEY_UP)
-		fractal->offset_y -= 500 / fractal->zoom;
-	else if (keydata.key == MLX_KEY_DOWN)
-		fractal->offset_y += 500 / fractal->zoom;
-}
-
-// Closes window when ESC is pressed - Done
-void	ft_esc_win(mlx_key_data_t keydata, void *param)
+void	ft_keys(mlx_key_data_t keys, void *param)
 {
 	t_fractal	*fractal;
 
 	fractal = (t_fractal *)param;
-	if (keydata.key == MLX_KEY_ESCAPE)
+	if (keys.key == MLX_KEY_ESCAPE)
 	{
 		mlx_close_window(fractal->mlx);
 		mlx_delete_image(fractal->mlx, fractal->pic);
 		exit(EXIT_FAILURE);
+	}
+	// Remove MLX_PRESS if you want to zoom continously and not just once
+	else if ((keys.key == MLX_KEY_LEFT || keys.key == MLX_KEY_A)
+		&& keys.action == MLX_PRESS)
+		fractal->offset_x -= 500 / fractal->zoom;
+	else if ((keys.key == MLX_KEY_RIGHT || keys.key == MLX_KEY_D)
+		&& keys.action == MLX_PRESS)
+		fractal->offset_x += 500 / fractal->zoom;
+	else if ((keys.key == MLX_KEY_UP || keys.key == MLX_KEY_W)
+		&& keys.action == MLX_PRESS)
+		fractal->offset_y -= 500 / fractal->zoom;
+	else if ((keys.key == MLX_KEY_DOWN || keys.key == MLX_KEY_S)
+		&& keys.action == MLX_PRESS)
+		fractal->offset_y += 500 / fractal->zoom;
+}
+
+void	ft_zoom(double up, double down, void *param)
+{
+	//t_fractal	*fractal;
+
+	//fractal = (t_fractal *)param;
+	(void)param;
+	if (down > 0)
+	{
+		ft_printf("Up\n");
+		// zoom(fractal, up, down, 1);
+	}
+	else if (down < 0)
+	{
+		ft_printf("Down\n");
+		//zoom(fractal, up, down, -1);
+	}
+	// This part is just if the mouse wheel can move sideways
+	// Not really necessary
+	else if (up > 0)
+	{
+		ft_printf("Up\n");
+		//zoom(fractal, up, down, -1);
+	}
+	else if (up < 0)
+	{
+		ft_printf("Down\n");
+		//zoom(fractal, up, down, -1);
 	}
 }
 
@@ -62,7 +91,8 @@ void	ft_init_win(t_fractal *fractal, char *type)
 	if (mlx_image_to_window(fractal->mlx, fractal->pic, 0.0, 0.0) < 0.0)
 		ft_mlx_error();
 	ft_which_fractal(fractal, type);
-	mlx_key_hook(fractal->mlx, ft_esc_win, fractal);
+	mlx_key_hook(fractal->mlx, ft_keys, fractal);
+	mlx_scroll_hook(fractal->mlx, ft_zoom, fractal);
 	mlx_loop(fractal->mlx);
 	mlx_delete_image(fractal->mlx, fractal->pic);
 }

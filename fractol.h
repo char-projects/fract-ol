@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:42:08 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/21 22:03:15 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/22 14:03:15 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void				ft_which_fractal(t_fractal *fractal, char *type);
 void				ft_init_fractal(t_fractal *fractal);
 
 // MLX window
-void				ft_esc_win(mlx_key_data_t keydata, void *param);
+void				ft_keys(mlx_key_data_t keydata, void *param);
 void				ft_init_win(t_fractal *fractal, char *type);
 void				ft_mlx_error(void);
 
