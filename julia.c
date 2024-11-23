@@ -6,11 +6,10 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:56:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/22 19:41:51 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:14:46 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// So far just a grey window :(
 #include "fractol.h"
 
 // C should be constant
