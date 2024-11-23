@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 20:29:25 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/23 18:28:02 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 00:45:03 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@ void	ft_which_fractal(t_fractal *fractal, char *type)
 		ft_draw_mandelbrot(fractal);
 	else if (ft_strncmp(type, "j", 1) == 0)
 		ft_draw_julia(fractal);
-	/* else if (ft_strncmp(type, "b", 1) == 0)
-		ft_burningship(fractal);
-	*/
+	else if (ft_strncmp(type, "b", 1) == 0)
+		ft_draw_burningship(fractal);
 	else
 	{
 		ft_printf("Fractal type not supported!\n");

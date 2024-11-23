@@ -6,11 +6,17 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:56:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/23 22:57:19 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/23 23:31:50 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	ft_random_julia(double *real, double *imag)
+{
+	*real = (((double)rand() / RAND_MAX) * 3.0 - 1.5);
+	*imag = (((double)rand() / RAND_MAX) * 3.0 - 1.5);
+}
 
 // C should be constant
 int	ft_julia(t_fractal *fractal, t_fractal c)
@@ -49,7 +55,6 @@ void	ft_draw_julia(void *fractal_void)
 	int			y;
 	
 	fractal = (t_fractal *)fractal_void;
-	// This should not be hardcoded - find a way to make it user-defined
 	c.real = -0.7;
 	c.imag = 0.27015;
 	y = 0;

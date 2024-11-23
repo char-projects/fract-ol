@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:20:39 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/23 23:04:50 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/23 23:29:34 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@ Allocated resources (e.g., mlx_image_t) are never freed
 
 #include "fractol.h"
 
+// Remove MLX_PRESS if you want to zoom continously and not just once
 void	ft_keys(mlx_key_data_t keys, void *param)
 {
 	t_fractal	*fractal;
-
+	t_fractal	c;
+	
 	fractal = (t_fractal *)param;
+	c.real = -0.7;
+	c.imag = 0.27015;
 	if (keys.key == MLX_KEY_ESCAPE)
 		ft_exit_fractal(fractal);
-	// Remove MLX_PRESS if you want to zoom continously and not just once
 	else if ((keys.key == MLX_KEY_LEFT || keys.key == MLX_KEY_A)
 		&& keys.action == MLX_PRESS)
 		fractal->offset_x -= 500 / fractal->zoom;
@@ -36,6 +39,8 @@ void	ft_keys(mlx_key_data_t keys, void *param)
 	else if ((keys.key == MLX_KEY_DOWN || keys.key == MLX_KEY_S)
 		&& keys.action == MLX_PRESS)
 		fractal->offset_y += 500 / fractal->zoom;
+	else if (keys.key == MLX_KEY_J)
+		ft_random_julia(&c.real, &c.imag);
 	ft_which_fractal(fractal, fractal->name);
 }
 
@@ -44,24 +49,13 @@ void	ft_scroll(double up, double down, void *param)
 	t_fractal	*fractal;
 
 	fractal = (t_fractal *)param;
+	(void)up;
 	if (down > 0)
 	{
 		ft_printf("Up\n");
 		ft_zoom(fractal, up, down, 1);
 	}
 	else if (down < 0)
-	{
-		ft_printf("Down\n");
-		ft_zoom(fractal, up, down, -1);
-	}
-	// This part is just if the mouse wheel can move sideways
-	// Not really necessary but needed for function signature
-	else if (up > 0)
-	{
-		ft_printf("Up\n");
-		ft_zoom(fractal, up, down, -1);
-	}
-	else if (up < 0)
 	{
 		ft_printf("Down\n");
 		ft_zoom(fractal, up, down, -1);

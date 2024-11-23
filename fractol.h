@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:42:08 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/23 23:00:43 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 00:46:35 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 
 typedef struct s_fractal
 {
-	double			imag; // y axis
-	double			real; // x axis
+	double imag; // y axis
+	double real; // x axis
 	double			tmp_i;
 	double			tmp_r;
 	double			zoom;
@@ -65,7 +65,12 @@ void				ft_zoom(t_fractal *fractal, int x, int y, int zoom);
 void				ft_color_pixel(t_fractal *fractal, int x, int y, int color);
 
 // Julia
+void				ft_random_julia(double *real, double *imag);
 void				ft_draw_julia(void *fractal_void);
 int					ft_julia(t_fractal *fractal, t_fractal c);
+
+// Burning ship
+int					ft_burningship(t_fractal *fractal, t_fractal c);
+void				ft_draw_burningship(void *fractal_void);
 
 #endif
