@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:42:08 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/23 17:29:19 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/23 23:00:43 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@ typedef struct s_fractal
 	mlx_texture_t	*tex;
 	mlx_t			*mlx;
 	int				color;
+	char			*name;
 	const char		*path;
 }					t_fractal;
 
 // Mandelbrot
 t_fractal			ft_square(t_fractal z);
-int					ft_mandelbrot(t_fractal fractal, t_fractal c);
+int					ft_mandelbrot(t_fractal *fractal, t_fractal c);
 void				ft_draw_mandelbrot(void *fractal_void);
 
 // Map to real

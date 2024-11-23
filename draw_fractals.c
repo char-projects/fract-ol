@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 14:43:22 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/23 18:31:17 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/23 22:57:55 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_zoom(t_fractal *fractal, int x, int y, int zoom)
 				/ (fractal->zoom / scale));
 		fractal->zoom /= scale;
 	}
-	ft_draw_mandelbrot(fractal);
+	ft_which_fractal(fractal, fractal->name);
 }
 
 void	ft_color_pixel(t_fractal *fractal, int x, int y, int color)

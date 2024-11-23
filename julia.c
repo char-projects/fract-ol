@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:56:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/23 18:14:46 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/23 22:57:19 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	ft_julia(t_fractal *fractal, t_fractal c)
 	t_fractal	temp_z;
 
 	i = 0;
+	fractal->name = "j";
 	// Initialize z and iterate over every pixel
 	z.real = ft_map_to_real(fractal->real, fractal->offset_x, fractal->offset_x
 			+ WIDTH / fractal->zoom);

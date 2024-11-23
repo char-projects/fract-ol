@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:20:39 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/23 18:30:26 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/23 23:04:50 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,17 @@ void	ft_keys(mlx_key_data_t keys, void *param)
 	// Remove MLX_PRESS if you want to zoom continously and not just once
 	else if ((keys.key == MLX_KEY_LEFT || keys.key == MLX_KEY_A)
 		&& keys.action == MLX_PRESS)
-	{
 		fractal->offset_x -= 500 / fractal->zoom;
-		ft_draw_mandelbrot(fractal);
-	}
 	else if ((keys.key == MLX_KEY_RIGHT || keys.key == MLX_KEY_D)
 		&& keys.action == MLX_PRESS)
 		fractal->offset_x += 500 / fractal->zoom;
 	else if ((keys.key == MLX_KEY_UP || keys.key == MLX_KEY_W)
 		&& keys.action == MLX_PRESS)
-		fractal->offset_y -= 500 / fractal->zoom;
+		fractal->offset_x -= 500 / fractal->zoom;
 	else if ((keys.key == MLX_KEY_DOWN || keys.key == MLX_KEY_S)
 		&& keys.action == MLX_PRESS)
 		fractal->offset_y += 500 / fractal->zoom;
+	ft_which_fractal(fractal, fractal->name);
 }
 
 void	ft_scroll(double up, double down, void *param)
