@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 09:40:43 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/21 21:12:45 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:43:30 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 
 double	ft_map_to_real(int x, double min_r, double max_r)
 {
-	return (x * (max_r - min_r) / WIDTH + min_r);
+	return (min_r + ((double)x / (WIDTH - 1)) * (max_r - min_r));
 }
 
 // This runs in an infinite loop - FIX IT!!!
 double	ft_map_to_imag(int y, double min_i, double max_i)
 {
-	return (y * (max_i - min_i) / HEIGHT + min_i);
+	return (min_i + ((double)y / (HEIGHT - 1)) * (max_i - min_i));
 }

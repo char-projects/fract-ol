@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:41:43 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/22 15:39:16 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:39:33 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	ft_mandelbrot(t_fractal fractal, t_fractal c)
 	// Initialize z to the origin
 	z.real = 0.0;
     z.imag = 0.0;
+	//c.real = (fractal.real / fractal.zoom) + fractal.offset_x;
+	//c.imag = (fractal.imag / fractal.zoom) + fractal.offset_y;
 	// Iterate while |z|^2 <= 4 and the maximum iteration limit isn't reached
 	while (((z.real * z.real) + (z.imag * z.imag)) <= 4 && i < MAX)
 	{
