@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 20:29:25 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 23:45:53 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 00:36:14 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_exit_fractal(t_fractal *fractal)
 	mlx_delete_image(fractal->mlx, fractal->pic);
 	mlx_close_window(fractal->mlx);
 	mlx_terminate(fractal->mlx);
-	free(fractal);
 	exit(1);
 }
 
@@ -43,13 +42,18 @@ void	ft_init_fractal(t_fractal *fractal)
     fractal->current_scheme = 0;
 }
 
-// Choose fractal type depending on argv[1] - Done
-void	ft_which_fractal(t_fractal *fractal, char *type)
+// Choose fractal type depending on argv[1]
+void	ft_which_fractal(t_fractal *fractal, char *type, t_fractal c)
 {
+	// How do I fix this bs ??
+	if (!c.real)	
+		c.real = -0.7;
+	if (c.imag)	
+		c.imag = 0.27015;
 	if (ft_strncmp(type, "m", 1) == 0)
 		ft_draw_mandelbrot(fractal);
 	else if (ft_strncmp(type, "j", 1) == 0)
-		ft_draw_julia(fractal);
+		ft_draw_julia(fractal, c);
 	else if (ft_strncmp(type, "b", 1) == 0)
 		ft_draw_burningship(fractal);
 	else

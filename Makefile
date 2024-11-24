@@ -1,6 +1,6 @@
 NAME    = fractol
 
-CFLAGS  = -Wall -Wextra -Werror
+CFLAGS  = -Wall -Wextra -Werror -g
 SRC		= main.c map_to_real.c mandelbrot.c mlx_win.c draw_fractals.c julia.c burning_ship.c
 OBJ		= ${SRC:.c=.o}
 LIBFT = libft/libft.a

@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:20:39 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 21:38:22 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 00:37:47 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,17 @@ void	ft_keys(mlx_key_data_t keys, void *param)
 		&& keys.action == MLX_PRESS)
 		fractal->offset_y += 100 / fractal->zoom;
 	else if (keys.key == MLX_KEY_J && keys.action == MLX_PRESS)
+	{
+		c.real = -0.7; // You can change these values dynamically, e.g., from user input or randomization
+        c.imag = 0.27015;
 		ft_random_julia(&c.real, &c.imag, fractal);
+	}
 	else if (keys.key == MLX_KEY_C && keys.action == MLX_PRESS)
     {
         fractal->current_scheme = (fractal->current_scheme + 1) % 5;
         fractal->color = fractal->color_schemes[fractal->current_scheme];
     }
-	ft_which_fractal(fractal, fractal->name);
+	ft_which_fractal(fractal, fractal->name, c);
 }
 
 void	ft_scroll(double up, double down, void *param)
@@ -65,6 +69,7 @@ void	ft_scroll(double up, double down, void *param)
 void	ft_resize_win(int32_t width, int32_t height, void *param)
 {
 	t_fractal	*fractal;
+	t_fractal	c;
 
 	fractal = (t_fractal *)param;
 	if (fractal->pic)
@@ -76,7 +81,7 @@ void	ft_resize_win(int32_t width, int32_t height, void *param)
 		ft_mlx_error();
 	if (mlx_image_to_window(fractal->mlx, fractal->pic, 0, 0) < 0)
 		ft_mlx_error();
-	ft_which_fractal(fractal, fractal->name);
+	ft_which_fractal(fractal, fractal->name, c);
 }
 
 // Error message - Done
@@ -89,6 +94,8 @@ void	ft_mlx_error(void)
 // Initialize MLX - Done
 void	ft_init_win(t_fractal *fractal, char *type)
 {
+	t_fractal c;
+	
 	fractal->mlx = mlx_init(fractal->width, fractal->height, "fract-ol", true);
 	if (!fractal->mlx)
 		ft_mlx_error();
@@ -98,7 +105,7 @@ void	ft_init_win(t_fractal *fractal, char *type)
 		ft_mlx_error();
 	if (mlx_image_to_window(fractal->mlx, fractal->pic, 0.0, 0.0) < 0.0)
 		ft_mlx_error();
-	ft_which_fractal(fractal, type);
+	ft_which_fractal(fractal, type, c);
 	mlx_key_hook(fractal->mlx, ft_keys, fractal);
 	mlx_scroll_hook(fractal->mlx, ft_scroll, fractal);
 	mlx_resize_hook(fractal->mlx, ft_resize_win, fractal);

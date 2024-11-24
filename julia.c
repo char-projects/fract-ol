@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:56:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 22:42:05 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 00:10:53 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 
 void	ft_random_julia(double *real, double *imag, t_fractal *fractal)
 {	
+	t_fractal c;
+	
 	*real = (((double)rand() / RAND_MAX) * 3.0 - 1.5);
 	*imag = (((double)rand() / RAND_MAX) * 3.0 - 1.5);
-	ft_draw_julia(fractal);
+	c.real = *real;
+	c.imag = *imag;
+	ft_draw_julia(fractal, c);
 }
 
 // C should be constant
@@ -55,17 +59,13 @@ int	ft_julia(t_fractal *fractal, t_fractal c)
 	return (i);
 }
 
-void	ft_draw_julia(void *fractal_void)
+void	ft_draw_julia(void *fractal_void, t_fractal c)
 {
 	t_fractal	*fractal;
-	t_fractal	c;
 	int			x;
 	int			y;
 	
 	fractal = (t_fractal *)fractal_void;
-	// This should NOT be hardcoded in here
-	c.real = -0.7;
-	c.imag = 0.27015;
 	y = 0;
 	while (y < fractal->height)
 	{

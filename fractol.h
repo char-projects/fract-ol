@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:42:08 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 22:52:18 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 00:36:30 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ double				ft_map_to_imag(int y, double min_imag, double max_imag, t_fractal *fra
 
 // Main
 void				ft_exit_fractal(t_fractal *fractal);
-void				ft_which_fractal(t_fractal *fractal, char *type);
+void				ft_which_fractal(t_fractal *fractal, char *type, t_fractal c);
 void				ft_init_fractal(t_fractal *fractal);
 
 // MLX window
@@ -66,7 +66,7 @@ void				ft_color_pixel(t_fractal *fractal, int x, int y, int color);
 
 // Julia
 void				ft_random_julia(double *real, double *imag, t_fractal *fractal);
-void				ft_draw_julia(void *fractal_void);
+void				ft_draw_julia(void *fractal_void, t_fractal c);
 int					ft_julia(t_fractal *fractal, t_fractal c);
 
 // Burning ship
