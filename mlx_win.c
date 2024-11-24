@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:20:39 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/23 23:29:34 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 01:12:57 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@ void	ft_keys(mlx_key_data_t keys, void *param)
 		ft_exit_fractal(fractal);
 	else if ((keys.key == MLX_KEY_LEFT || keys.key == MLX_KEY_A)
 		&& keys.action == MLX_PRESS)
-		fractal->offset_x -= 500 / fractal->zoom;
+		fractal->offset_x -= 100 / fractal->zoom;
 	else if ((keys.key == MLX_KEY_RIGHT || keys.key == MLX_KEY_D)
 		&& keys.action == MLX_PRESS)
-		fractal->offset_x += 500 / fractal->zoom;
+		fractal->offset_x += 100 / fractal->zoom;
 	else if ((keys.key == MLX_KEY_UP || keys.key == MLX_KEY_W)
 		&& keys.action == MLX_PRESS)
-		fractal->offset_x -= 500 / fractal->zoom;
+		fractal->offset_y -= 100 / fractal->zoom;
 	else if ((keys.key == MLX_KEY_DOWN || keys.key == MLX_KEY_S)
 		&& keys.action == MLX_PRESS)
-		fractal->offset_y += 500 / fractal->zoom;
+		fractal->offset_y += 100 / fractal->zoom;
 	else if (keys.key == MLX_KEY_J)
 		ft_random_julia(&c.real, &c.imag);
 	ft_which_fractal(fractal, fractal->name);
