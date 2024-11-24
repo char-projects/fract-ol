@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:06:07 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 15:40:26 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 16:50:07 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_burningship(t_fractal *fractal, t_fractal c)
 		z.real = fabs(temp_z);
 		i++;
 	}
-    fractal->color = 0xFCBE11 * (i % 256);
+    fractal->color = 0xD8BFD8 * (i % 256);
 	ft_color_pixel(fractal, (c.real - fractal->offset_x) * fractal->zoom,
                     (c.imag - fractal->offset_y) * fractal->zoom, fractal->color);
 	return (i);

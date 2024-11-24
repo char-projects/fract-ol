@@ -6,14 +6,14 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:42:08 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 15:40:08 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 16:38:38 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define MAX 500
+# define MAX 1000
 
 # include "MLX42/include/MLX42/MLX42.h"
 # include "libft/libft.h"
