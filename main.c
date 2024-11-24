@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 20:29:25 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 21:19:58 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 23:45:53 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	ft_exit_fractal(t_fractal *fractal)
 {
 	mlx_delete_image(fractal->mlx, fractal->pic);
 	mlx_close_window(fractal->mlx);
-	free(fractal->mlx);
+	mlx_terminate(fractal->mlx);
+	free(fractal);
 	exit(1);
 }
 
