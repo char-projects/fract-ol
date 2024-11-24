@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 20:29:25 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 15:33:48 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 21:19:58 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_init_fractal(t_fractal *fractal)
 {
 	fractal->real = 0.0;
 	fractal->imag = 0.0;
-	//fractal->color = 0xFCBE11; // Should be orange but it's not
+	fractal->color = 0xD8BFD8; // Should be orange but it's not
 	fractal->zoom = 150;
 	fractal->offset_x = -1.21;
 	fractal->offset_y = -1.21;
@@ -34,6 +34,12 @@ void	ft_init_fractal(t_fractal *fractal)
 	fractal->mlx = NULL;
 	fractal->width = 800;
 	fractal->height = 600;
+	fractal->color_schemes[0] = 0xD8BFD8;
+    fractal->color_schemes[1] = 0xFF4500;
+    fractal->color_schemes[2] = 0x4682B4;
+    fractal->color_schemes[3] = 0x32CD32;
+    fractal->color_schemes[4] = 0xFFD700;
+    fractal->current_scheme = 0;
 }
 
 // Choose fractal type depending on argv[1] - Done

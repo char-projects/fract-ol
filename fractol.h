@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:42:08 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 16:38:38 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 21:38:06 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_fractal
 	mlx_texture_t	*tex;
 	mlx_t			*mlx;
 	int				color;
+    unsigned int 	color_schemes[5];
+	int 			current_scheme;
 	int				width;
 	int				height;
 	char			*name;
@@ -63,7 +65,7 @@ void				ft_zoom(t_fractal *fractal, int x, int y, int zoom);
 void				ft_color_pixel(t_fractal *fractal, int x, int y, int color);
 
 // Julia
-void				ft_random_julia(double *real, double *imag);
+void				ft_random_julia(double *real, double *imag, t_fractal *fractal);
 void				ft_draw_julia(void *fractal_void);
 int					ft_julia(t_fractal *fractal, t_fractal c);
 

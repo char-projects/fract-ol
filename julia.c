@@ -6,16 +6,17 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:56:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 16:48:50 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 21:37:27 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_random_julia(double *real, double *imag)
-{
+void	ft_random_julia(double *real, double *imag, t_fractal *fractal)
+{	
 	*real = (((double)rand() / RAND_MAX) * 3.0 - 1.5);
 	*imag = (((double)rand() / RAND_MAX) * 3.0 - 1.5);
+	ft_draw_julia(fractal);
 }
 
 // C should be constant
@@ -42,11 +43,16 @@ int	ft_julia(t_fractal *fractal, t_fractal c)
 		z.imag = 2 * temp_z.real * temp_z.imag + c.imag;
 		i++;
 	}
-	fractal->color = 0xD8BFD8 * (i % MAX);
+	// Generate the pixel color based on the base color and iteration count
+	unsigned int color_modifier = (i * 0x010101) & 0xFFFFFF; // Gradual fade
+	unsigned int pixel_color = fractal->color + color_modifier;
+
+	// Apply the pixel color
 	if (i == MAX)
 		ft_color_pixel(fractal, fractal->real, fractal->imag, 0x000000);
 	else
-		ft_color_pixel(fractal, fractal->real, fractal->imag, fractal->color);
+		ft_color_pixel(fractal, fractal->real, fractal->imag, pixel_color);
+
 	return (i);
 }
 
@@ -58,6 +64,7 @@ void	ft_draw_julia(void *fractal_void)
 	int			y;
 	
 	fractal = (t_fractal *)fractal_void;
+	// This should NOT be hardcoded in here
 	c.real = -0.7;
 	c.imag = 0.27015;
 	y = 0;

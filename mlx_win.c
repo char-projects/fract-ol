@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:20:39 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 15:35:48 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 21:38:22 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,13 @@ void	ft_keys(mlx_key_data_t keys, void *param)
 	else if ((keys.key == MLX_KEY_DOWN || keys.key == MLX_KEY_S)
 		&& keys.action == MLX_PRESS)
 		fractal->offset_y += 100 / fractal->zoom;
-	else if (keys.key == MLX_KEY_J)
-		ft_random_julia(&c.real, &c.imag);
+	else if (keys.key == MLX_KEY_J && keys.action == MLX_PRESS)
+		ft_random_julia(&c.real, &c.imag, fractal);
+	else if (keys.key == MLX_KEY_C && keys.action == MLX_PRESS)
+    {
+        fractal->current_scheme = (fractal->current_scheme + 1) % 5;
+        fractal->color = fractal->color_schemes[fractal->current_scheme];
+    }
 	ft_which_fractal(fractal, fractal->name);
 }
 
