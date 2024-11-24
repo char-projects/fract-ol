@@ -6,14 +6,14 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:42:08 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 21:38:06 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 22:34:26 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define MAX 1000
+# define MAX 42
 
 # include "MLX42/include/MLX42/MLX42.h"
 # include "libft/libft.h"
@@ -70,7 +70,7 @@ void				ft_draw_julia(void *fractal_void);
 int					ft_julia(t_fractal *fractal, t_fractal c);
 
 // Burning ship
-int					ft_burningship(t_fractal *fractal, t_fractal c);
+int					ft_burningship(t_fractal *fractal, double real, double imag);
 void				ft_draw_burningship(void *fractal_void);
 
 #endif

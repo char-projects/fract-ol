@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:56:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 21:37:27 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 22:42:05 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	ft_julia(t_fractal *fractal, t_fractal c)
 		ft_color_pixel(fractal, fractal->real, fractal->imag, 0x000000);
 	else
 		ft_color_pixel(fractal, fractal->real, fractal->imag, pixel_color);
-
 	return (i);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:06:07 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 20:34:03 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 22:01:24 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 #include "fractol.h"
 
-int	ft_burningship(t_fractal *fractal, t_fractal c)
+int	ft_burningship(t_fractal *fractal, double real, double imag)
 {
 	int			i;
 	t_fractal	z;
@@ -34,41 +34,52 @@ int	ft_burningship(t_fractal *fractal, t_fractal c)
 	fractal->name = "b";
 	z.real = 0.0;
 	z.imag = 0.0;
+	fractal->offset_x = -2.0;
+	fractal->offset_y = -2.0;
 	while ((z.real * z.real + z.imag * z.imag <= 4) && i < MAX)
 	{
-		temp_z = z.real * z.real - z.imag * z.imag + c.real;
-		z.imag = fabs(2.0 * z.real * z.imag) + c.imag;
+		temp_z = z.real * z.real - z.imag * z.imag + real;
+		z.imag = fabs(2.0 * z.real * z.imag) + imag;
 		z.real = fabs(temp_z);
 		i++;
 	}
-    fractal->color = 0xD8BFD8 * (i % MAX);
-	ft_color_pixel(fractal, (c.real - fractal->offset_x) * fractal->zoom,
-                    (c.imag - fractal->offset_y) * fractal->zoom, fractal->color);
 	return (i);
 }
 
-void	ft_draw_burningship(void *fractal_void)
+void ft_draw_burningship(void *fractal_void)
 {
-	t_fractal	*fractal;
-    t_fractal   c;
-	int			x;
-	int			y;
+    t_fractal *fractal = (t_fractal *)fractal_void;
+    int x, y, iteration;
+    double real, imag;
+    int color;
 
-	fractal = (t_fractal *)fractal_void;
-	fractal->offset_x = -2.0;
-	fractal->offset_y = -2.0;
-	x = 0;
-	y = 0;
-	while (x < fractal->width)
-	{
-		while (y < fractal->height)
-		{
-			c.real = ft_map_to_real(x, fractal->offset_x, fractal->offset_x + fractal->width / fractal->zoom, fractal);
-			c.imag = ft_map_to_imag(y, fractal->offset_y, fractal->offset_y + fractal->height / fractal->zoom, fractal);
-            ft_burningship(fractal, c);
-			y++;
-		}
-		x++;
-		y = 0;
-	}
+    y = 0;
+    while (y < fractal->height)
+    {
+        x = 0;
+        while (x < fractal->width)
+        {
+            // Map screen coordinates to the complex plane
+            real = ft_map_to_real(x, fractal->offset_x,
+                fractal->offset_x + fractal->width / fractal->zoom, fractal);
+            imag = ft_map_to_imag(y, fractal->offset_y,
+                fractal->offset_y + fractal->height / fractal->zoom, fractal);
+
+            // Compute burning ship fractal iterations
+            iteration = ft_burningship(fractal, real, imag);
+
+            // Compute color based on iteration
+            if (iteration == MAX)
+                color = 0x000000; // Black for points inside the set
+            else
+                color = 0xD8BFD8 * (iteration % MAX); // Gradient for points outside
+
+            // Draw the pixel
+            ft_color_pixel(fractal, x, y, color);
+
+            x++;
+        }
+        y++;
+    }
 }
+
