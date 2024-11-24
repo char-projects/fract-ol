@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:41:43 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/23 23:01:21 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 15:41:17 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ int	ft_mandelbrot(t_fractal *fractal, t_fractal c)
 		z.imag = 2 * temp_z.real * temp_z.imag + c.imag;
 		i++;
 	}
-	fractal->color = 0xFCBE11 * (i % 256);
-	ft_color_pixel(fractal, (c.real - fractal->offset_x) * fractal->zoom,
+	fractal->color = 0xFCBE11 * (i % MAX);
+	if (i == MAX)
+		ft_color_pixel(fractal, c.real, c.imag, 0x000000);
+	else
+		ft_color_pixel(fractal, (c.real - fractal->offset_x) * fractal->zoom,
                     (c.imag - fractal->offset_y) * fractal->zoom, fractal->color);
 	return (i);
 }
@@ -59,13 +62,13 @@ void	ft_draw_mandelbrot(void *fractal_void)
     fractal->offset_x = -2.0;
     fractal->offset_y = -2.0;
 	y = 0;
-	while (y < HEIGHT)
+	while (y < fractal->height)
 	{
 		x = 0;
-		while (x < WIDTH)
+		while (x < fractal->width)
 		{
-			c.real = ft_map_to_real(x, fractal->offset_x, fractal->offset_x + WIDTH / fractal->zoom);
-			c.imag = ft_map_to_imag(y, fractal->offset_y, fractal->offset_y + HEIGHT / fractal->zoom);
+			c.real = ft_map_to_real(x, fractal->offset_x, fractal->offset_x + fractal->width / fractal->zoom, fractal);
+			c.imag = ft_map_to_imag(y, fractal->offset_y, fractal->offset_y + fractal->height / fractal->zoom, fractal);
 			ft_mandelbrot(fractal, c);
 			x++;
 		}

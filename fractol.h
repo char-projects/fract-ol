@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:42:08 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 00:54:40 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 15:40:08 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 # define FRACTOL_H
 
 # define MAX 500
-// Height and width probably shouldn't be hardcoded
-// Maybe I can find an MLX function to adjust the window size
-# define WIDTH 800
-# define HEIGHT 600
 
 # include "MLX42/include/MLX42/MLX42.h"
 # include "libft/libft.h"
@@ -26,8 +22,8 @@
 
 typedef struct s_fractal
 {
-	double imag; // y axis
-	double real; // x axis
+	double 			imag; // y axis
+	double 			real; // x axis
 	double			tmp_i;
 	double			tmp_r;
 	double			zoom;
@@ -37,6 +33,8 @@ typedef struct s_fractal
 	mlx_texture_t	*tex;
 	mlx_t			*mlx;
 	int				color;
+	int				width;
+	int				height;
 	char			*name;
 	const char		*path;
 }					t_fractal;
@@ -47,8 +45,8 @@ int					ft_mandelbrot(t_fractal *fractal, t_fractal c);
 void				ft_draw_mandelbrot(void *fractal_void);
 
 // Map to real
-double				ft_map_to_real(int x, double min_real, double max_real);
-double				ft_map_to_imag(int y, double min_imag, double max_imag);
+double				ft_map_to_real(int x, double min_real, double max_real, t_fractal *fractal);
+double				ft_map_to_imag(int y, double min_imag, double max_imag, t_fractal *fractal);
 
 // Main
 void				ft_exit_fractal(t_fractal *fractal);

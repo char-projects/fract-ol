@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:06:07 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 00:48:43 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 15:40:26 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ void	ft_draw_burningship(void *fractal_void)
 	fractal->offset_y = -2.0;
 	x = 0;
 	y = 0;
-	while (x < WIDTH)
+	while (x < fractal->width)
 	{
-		while (y < HEIGHT)
+		while (y < fractal->height)
 		{
-			c.real = ft_map_to_real(x, fractal->offset_x, fractal->offset_x + WIDTH / fractal->zoom);
-			c.imag = ft_map_to_imag(y, fractal->offset_y, fractal->offset_y + HEIGHT / fractal->zoom);
+			c.real = ft_map_to_real(x, fractal->offset_x, fractal->offset_x + fractal->width / fractal->zoom, fractal);
+			c.imag = ft_map_to_imag(y, fractal->offset_y, fractal->offset_y + fractal->height / fractal->zoom, fractal);
             ft_burningship(fractal, c);
 			y++;
 		}

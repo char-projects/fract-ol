@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 14:43:22 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/23 22:57:55 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/24 15:38:13 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ void	ft_zoom(t_fractal *fractal, int x, int y, int zoom)
 
 void	ft_color_pixel(t_fractal *fractal, int x, int y, int color)
 {
-	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
+	if (x >= 0 && x < fractal->width && y >= 0 && y < fractal->height)
 		mlx_put_pixel(fractal->pic, x, y, color);
 }
