@@ -143,11 +143,6 @@ clean:
 .PHONY : clean
 
 # The main clean target
-fclean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
-.PHONY : fclean
-
-# The main clean target
 clean/fast: clean
 .PHONY : clean/fast
 

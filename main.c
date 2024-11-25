@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 20:29:25 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 21:53:45 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 21:59:35 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_init_fractal(t_fractal *fractal)
 	fractal->mlx = NULL;
 	fractal->width = 800;
 	fractal->height = 600;
-	fractal->max = 50;
+	fractal->max = 5000;
 }
 
 void	ft_which_fractal(t_fractal *fractal, char *type)
