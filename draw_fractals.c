@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 14:43:22 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 20:17:37 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 20:48:44 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,21 @@ void	ft_scroll(double up, double down, void *param)
 	else if (down < 0)
 		ft_zoom(fractal, up, down, -1);
 	ft_which_fractal(fractal, fractal->name);
+}
+
+// Done
+void	ft_change_max(t_fractal *fractal, int key_code)
+{
+	if (key_code == 3)
+	{
+		if (fractal->max > 5000)
+			fractal->max -= 600;
+	}
+	else if (key_code == 4)
+	{
+		if (fractal->max < 5000)
+			fractal->max += 600;
+	}
 }
 
 void	ft_color_pixel(t_fractal *fractal, int x, int y, int color)

@@ -6,25 +6,43 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:20:39 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 20:44:14 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 21:47:00 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-// Done
-void	ft_change_max(t_fractal *fractal, int key_code)
+void	ft_mouse(mouse_key_t mouse, action_t action, modifier_key_t mod,
+		void *param)
 {
-	if (key_code == 3)
+	t_fractal	*fractal;
+	int32_t		m_x;
+	int32_t		m_y;
+
+	(void)action; // Ignore action
+	(void)mod;    // Ignore mod
+	fractal = (t_fractal *)param;
+	mlx_get_mouse_pos(fractal->mlx, &m_x, &m_y);
+	// Convert mouse coordinates to relative positions
+	m_x = (m_x / fractal->width);
+	m_y = (m_y / fractal->height);
+	if (mouse == 4) // Scroll up
 	{
-		if (fractal->max > 5000)
-			fractal->max -= 600;
+		fractal->zoom *= 1.4;
+		fractal->offset_x = (m_x - 0.5) * ((-2.5 - 1.5) / fractal->zoom)
+			+ fractal->offset_x;
+		fractal->offset_y = (m_y - 0.5) * ((1.5 - -1.5) / fractal->zoom)
+			+ fractal->offset_y;
 	}
-	else if (key_code == 4)
+	else if (mouse == 5) // Scroll down
 	{
-		if (fractal->max < 5000)
-			fractal->max += 600;
+		fractal->zoom /= 1.4;
+		fractal->offset_x = (m_x - 0.5) * ((-2.5 - 1.5) / fractal->zoom)
+			+ fractal->offset_x;
+		fractal->offset_y = (m_y - 0.5) * ((1.5 - -1.5) / fractal->zoom)
+			+ fractal->offset_y;
 	}
+	ft_which_fractal(fractal, fractal->name);
 }
 
 void	ft_keys(mlx_key_data_t keys, void *param)
@@ -97,7 +115,7 @@ void	ft_init_win(t_fractal *fractal, char *type, char *p1, char *p2)
 	mlx_key_hook(fractal->mlx, ft_keys, fractal);
 	mlx_scroll_hook(fractal->mlx, ft_scroll, fractal);
 	mlx_resize_hook(fractal->mlx, ft_resize_win, fractal);
-	// mlx_mouse_hook(fractal->mlx, ft_mouse, fractal);
+	mlx_mouse_hook(fractal->mlx, ft_mouse, fractal);
 	mlx_loop(fractal->mlx);
 	ft_exit_fractal(fractal);
 }

@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:42:08 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 20:42:08 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 21:29:09 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,14 @@ void			ft_init_fractal(t_fractal *fractal);
 void			ft_init_julia(t_fractal *fractal, char *param1, char *param2);
 
 // MLX window
-void			ft_change_max(t_fractal *fractal, int key_code);
-void			ft_keys(mlx_key_data_t keydata, void *param);
+void			ft_keys(mlx_key_data_t keys, void *param);
 void			ft_init_win(t_fractal *fractal, char *type, char *p1, char *p2);
 void			ft_mlx_error(void);
+void			ft_mouse(mouse_key_t mouse,  action_t action,  modifier_key_t mod,  void *param);
+void			ft_resize_win(int32_t width, int32_t height, void *param);
 
 // Draw fractals
+void			ft_change_max(t_fractal *fractal, int key_code);
 void			ft_zoom(t_fractal *fractal, int x, int y, int zoom);
 void			ft_color_pixel(t_fractal *fractal, int x, int y, int color);
 void			ft_scroll(double up, double down, void *param);
