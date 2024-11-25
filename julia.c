@@ -6,11 +6,11 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:56:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 21:54:34 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 22:41:08 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "include/fractol.h"
 
 double	ft_make_random(void)
 {

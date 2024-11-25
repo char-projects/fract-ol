@@ -6,11 +6,11 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:20:39 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 21:50:16 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 22:41:08 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "include/fractol.h"
 
 void	ft_mouse(mouse_key_t mouse, action_t action, modifier_key_t mod,
 		void *param)

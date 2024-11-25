@@ -6,11 +6,11 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:41:43 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 21:52:55 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 22:41:08 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "include/fractol.h"
 
 int	ft_mandelbrot(t_fractal *fractal)
 {

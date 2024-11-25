@@ -6,11 +6,11 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:06:07 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 22:01:35 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 22:41:09 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "include/fractol.h"
 
 int	ft_burningship(t_fractal *fractal)
 {

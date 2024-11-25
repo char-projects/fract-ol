@@ -6,13 +6,13 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 14:43:22 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 21:55:22 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 22:41:08 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Build something that changes the colors
 
-#include "fractol.h"
+#include "include/fractol.h"
 
 void	ft_zoom(t_fractal *fractal, int x, int y, int zoom)
 {
