@@ -6,73 +6,58 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:41:43 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 14:25:59 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:37:18 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_fractal	ft_square(t_fractal z)
-{
-	t_fractal	res;
-
-	res.real = (z.real * z.real) - (z.imag * z.imag);
-	res.imag = 2 * z.real * z.imag;
-	return (res);
-}
-
-int	ft_mandelbrot(t_fractal *fractal, t_fractal c)
+int	ft_mandelbrot(t_fractal *fractal)
 {
 	int			i;
-	t_fractal	z;
-	t_fractal	temp_z;
+	double		temp_z;
 
 	i = 0;
 	fractal->name = "m";
 	// Initialize z to the origin
-	z.real = 0.0;
-    z.imag = 0.0;
+	fractal->z_real = 0.0;
+    fractal->z_imag = 0.0;
+	fractal->c_real = (fractal->real / fractal->zoom) + fractal->offset_x;
+	fractal->c_imag = (fractal->imag / fractal->zoom) + fractal->offset_y;
 	// Iterate while |z|^2 <= 4 and the maximum iteration limit isn't reached
-	while (((z.real * z.real) + (z.imag * z.imag)) <= 4 && i < MAX)
+	while (++i < fractal->max)
 	{
-		temp_z = z;
-
-		// Calculate z = z^2 + c
-		z.real = (temp_z.real * temp_z.real) - (temp_z.imag * temp_z.imag) + c.real;
-		z.imag = 2 * temp_z.real * temp_z.imag + c.imag;
-		i++;
+		temp_z = fractal->z_real * fractal->z_real - fractal->z_imag * fractal->z_imag
+			+ fractal->c_real;
+		fractal->z_imag = 2.0 * fractal->z_real * fractal->z_imag + fractal->c_imag;
+		fractal->z_real = temp_z;
+		if (fractal->z_real * fractal->z_real + fractal->z_imag
+			* fractal->z_imag >= 4.0)
+			break ;
 	}
-	// Generate the pixel color based on the base color and iteration count
-	unsigned int color_modifier = (i * 0x010101) & 0xFFFFFF; // Gradual fade
-	unsigned int pixel_color = fractal->color + color_modifier;
-
-	if (i == MAX)
-		ft_color_pixel(fractal, c.real, c.imag, 0x000000);
+	if (i == fractal->max)
+		ft_color_pixel(fractal, fractal->real, fractal->imag, 0x000000);
 	else
-		ft_color_pixel(fractal, (c.real - fractal->offset_x) * fractal->zoom,
-                    (c.imag - fractal->offset_y) * fractal->zoom, pixel_color);
+		ft_color_pixel(fractal, fractal->real, fractal->imag, (fractal->color * i));
 	return (i);
 }
 
-void	ft_draw_mandelbrot(void *fractal_void)
+void	*ft_draw_mandelbrot(void *void_pointer)
 {
-	t_fractal	*fractal;
-	t_fractal	c;
-	int			x;
-	int			y;
-
-	fractal = (t_fractal *)fractal_void;
-	y = 0;
-	while (y < fractal->height)
+	t_fractal *fractal;
+	
+	fractal = (t_fractal *)void_pointer;
+	fractal->real = 0;
+	fractal->imag = 0;
+	while (fractal->real < fractal->width)
 	{
-		x = 0;
-		while (x < fractal->width)
+		while (fractal->imag < fractal->height)
 		{
-			c.real = ft_map_to_real(x, fractal->offset_x, fractal->offset_x + fractal->width / fractal->zoom, fractal);
-			c.imag = ft_map_to_imag(y, fractal->offset_y, fractal->offset_y + fractal->height / fractal->zoom, fractal);
-			ft_mandelbrot(fractal, c);
-			x++;
+			ft_mandelbrot(fractal);
+			fractal->imag++;
 		}
-		y++;
+		fractal->real++;
+		fractal->imag = 0;
 	}
+	return (NULL);
 }

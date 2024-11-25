@@ -6,14 +6,12 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:42:08 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 14:14:16 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:48:33 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-
-# define MAX 42
 
 # include "MLX42/include/MLX42/MLX42.h"
 # include "libft/libft.h"
@@ -24,40 +22,33 @@ typedef struct s_fractal
 {
 	double 			imag; // y axis
 	double			real; // x axis
-	double			tmp_i;
-	double			tmp_r;
+	double			z_real;
+	double			z_imag;
+	double			c_real;
+	double			c_imag;
 	double			zoom;
 	double			offset_x;
 	double			offset_y;
-	double			c_r;
-	double			c_i;
 	mlx_image_t		*pic;
 	mlx_texture_t	*tex;
 	mlx_t			*mlx;
 	int				color;
-	unsigned int	color_schemes[5];
-	int				current_scheme;
 	int				width;
 	int				height;
+	int				max;
 	char			*name;
 	const char		*path;
 }					t_fractal;
 
 // Mandelbrot
-t_fractal			ft_square(t_fractal z);
-int					ft_mandelbrot(t_fractal *fractal, t_fractal c);
-void				ft_draw_mandelbrot(void *fractal_void);
-
-// Map to real
-double				ft_map_to_real(int x, double min_real, double max_real,
-						t_fractal *fractal);
-double				ft_map_to_imag(int y, double min_imag, double max_imag,
-						t_fractal *fractal);
+int					ft_mandelbrot(t_fractal *fractal);
+void				*ft_draw_mandelbrot(void *void_pointer);
 
 // Main
 void				ft_exit_fractal(t_fractal *fractal);
-void				ft_which_fractal(t_fractal *fractal, char *type, int flag);
+void				ft_which_fractal(t_fractal *fractal, char *type);
 void				ft_init_fractal(t_fractal *fractal);
+void				ft_change_max(t_fractal *fractal, int key_code);
 
 // MLX window
 void				ft_keys(mlx_key_data_t keydata, void *param);
@@ -71,12 +62,13 @@ void				ft_color_pixel(t_fractal *fractal, int x, int y, int color);
 void				ft_scroll(double up, double down, void *param);
 
 // Julia
-t_fractal 			ft_random_julia(t_fractal *fractal);
-void				ft_draw_julia(void *fractal_void, int flag);
-int					ft_julia(t_fractal *fractal, t_fractal c);
+double				ft_make_random(void);
+void				ft_random_julia(double *c_real, double *c_imag);
+void				ft_draw_julia(t_fractal	*fractal);
+void				ft_julia(t_fractal *fractal);
 
 // Burning ship
-int					ft_burningship(t_fractal *fractal, t_fractal c);
-void				ft_draw_burningship(void *fractal_void);
+int					ft_burningship(t_fractal *fractal);
+void				ft_draw_burningship(t_fractal *fractal);
 
 #endif

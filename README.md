@@ -12,4 +12,5 @@
 - Multiple fractals: Mandelbrot, Julia, BurningShip
 - Increase and decrease max iteration for shape calculation
 - Zoom and unzoom
+- Move around with the arrow keys or W, A, S, D
 - Different color patterns
