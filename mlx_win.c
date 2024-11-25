@@ -6,11 +6,26 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:20:39 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 18:50:00 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 20:44:14 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+// Done
+void	ft_change_max(t_fractal *fractal, int key_code)
+{
+	if (key_code == 3)
+	{
+		if (fractal->max > 5000)
+			fractal->max -= 600;
+	}
+	else if (key_code == 4)
+	{
+		if (fractal->max < 5000)
+			fractal->max += 600;
+	}
+}
 
 void	ft_keys(mlx_key_data_t keys, void *param)
 {
@@ -27,11 +42,13 @@ void	ft_keys(mlx_key_data_t keys, void *param)
 		fractal->offset_y -= 50 / fractal->zoom;
 	else if ((keys.key == MLX_KEY_DOWN || keys.key == MLX_KEY_S))
 		fractal->offset_y += 50 / fractal->zoom;
+	else if (keys.key == MLX_KEY_C && keys.action == MLX_PRESS)
+		fractal->color += (255 * 255 * 255) / 100;
 	else if (keys.key == MLX_KEY_J && keys.action == MLX_PRESS)
 		ft_random_julia(&fractal->c_real, &fractal->c_imag);
-	else if (keys.key == MLX_KEY_KP_SUBTRACT && keys.action == MLX_PRESS)
+	else if (keys.key == MLX_KEY_N && keys.action == MLX_PRESS)
 		ft_change_max(fractal, 3);
-	else if (keys.key == MLX_KEY_KP_ADD && keys.action == MLX_PRESS)
+	else if (keys.key == MLX_KEY_M && keys.action == MLX_PRESS)
 		ft_change_max(fractal, 4);
 	ft_which_fractal(fractal, fractal->name);
 }
@@ -62,7 +79,7 @@ void	ft_mlx_error(void)
 }
 
 // Initialize MLX - Done
-void	ft_init_win(t_fractal *fractal, char *type)
+void	ft_init_win(t_fractal *fractal, char *type, char *p1, char *p2)
 {
 	fractal->mlx = mlx_init(fractal->width, fractal->height, "fract-ol", true);
 	if (!fractal->mlx)
@@ -73,7 +90,10 @@ void	ft_init_win(t_fractal *fractal, char *type)
 		ft_mlx_error();
 	if (mlx_image_to_window(fractal->mlx, fractal->pic, 0.0, 0.0) < 0.0)
 		ft_mlx_error();
-	ft_which_fractal(fractal, type);
+	if (ft_strncmp(type, "m", 1) == 0 || ft_strncmp(type, "b", 1) == 0)
+		ft_which_fractal(fractal, type);
+	else
+		ft_init_julia(fractal, p1, p2);
 	mlx_key_hook(fractal->mlx, ft_keys, fractal);
 	mlx_scroll_hook(fractal->mlx, ft_scroll, fractal);
 	mlx_resize_hook(fractal->mlx, ft_resize_win, fractal);

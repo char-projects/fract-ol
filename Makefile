@@ -1,6 +1,6 @@
 NAME    = fractol
 
-CFLAGS  = -Wall -Wextra -Werror -g
+CFLAGS  = -Wall -Wextra -Werror # -fsanitize=address
 SRC		= main.c mandelbrot.c mlx_win.c draw_fractals.c julia.c burning_ship.c
 OBJ		= ${SRC:.c=.o}
 LIBFT = libft/libft.a

@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:56:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 18:48:53 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 19:55:32 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	ft_julia(t_fractal *fractal)
 		temp_z = fractal->z_real;
 		// Calculate z = z^2 + c
 		fractal->z_real = fractal->z_real * fractal->z_real - fractal->z_imag
-				* fractal->z_imag + fractal->c_real;
-		fractal->z_imag = 2.0 * fractal->z_imag * temp_z + fractal->c_imag;
+			* fractal->z_imag + fractal->c_real;
+		fractal->z_imag = 2 * fractal->z_imag * temp_z + fractal->c_imag;
 		if (fractal->z_real * fractal->z_real + fractal->z_imag
 			* fractal->z_imag >= 4.0)
 			break ;
@@ -50,7 +50,8 @@ void	ft_julia(t_fractal *fractal)
 	if (i == fractal->max)
 		ft_color_pixel(fractal, fractal->real, fractal->imag, 0x000000);
 	else
-		ft_color_pixel(fractal, fractal->real, fractal->imag, (fractal->color * (i % 255)));
+		ft_color_pixel(fractal, fractal->real, fractal->imag, (fractal->color
+				* (i % 255)));
 }
 
 void	ft_draw_julia(t_fractal *fractal)
