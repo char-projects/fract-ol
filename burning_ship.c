@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 00:06:07 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 22:55:31 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:27:28 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ void	ft_draw_burningship(void *fractal_void)
 	int			y;
 
 	fractal = (t_fractal *)fractal_void;
-	fractal->offset_x = -2.0;
-	fractal->offset_y = -2.0;
 	x = 0;
 	y = 0;
 	while (x < fractal->width)

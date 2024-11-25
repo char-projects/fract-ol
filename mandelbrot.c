@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:41:43 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/24 22:44:41 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:25:59 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	ft_draw_mandelbrot(void *fractal_void)
 	int			y;
 
 	fractal = (t_fractal *)fractal_void;
-    fractal->offset_x = -2.0;
-    fractal->offset_y = -2.0;
 	y = 0;
 	while (y < fractal->height)
 	{

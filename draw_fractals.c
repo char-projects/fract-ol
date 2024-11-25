@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 14:43:22 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 00:38:18 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:16:34 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 void	ft_zoom(t_fractal *fractal, int x, int y, int zoom)
 {
-	t_fractal	c;
 	double		scale;
 
 	scale = 1.5;
@@ -36,7 +35,20 @@ void	ft_zoom(t_fractal *fractal, int x, int y, int zoom)
 				/ (fractal->zoom / scale));
 		fractal->zoom /= scale;
 	}
-	ft_which_fractal(fractal, fractal->name, c);
+	ft_which_fractal(fractal, fractal->name, 1);
+}
+
+void	ft_scroll(double up, double down, void *param)
+{
+	t_fractal	*fractal;
+
+	fractal = (t_fractal *)param;
+	(void)up;
+	if (down > 0)
+		ft_zoom(fractal, up, down, 1);
+	else if (down < 0)
+		ft_zoom(fractal, up, down, -1);
+	ft_which_fractal(fractal, fractal->name, 1);
 }
 
 void	ft_color_pixel(t_fractal *fractal, int x, int y, int color)

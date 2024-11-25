@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 20:29:25 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 00:36:14 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:28:35 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,28 @@ void	ft_init_fractal(t_fractal *fractal)
 	fractal->imag = 0.0;
 	fractal->color = 0xD8BFD8; // Should be orange but it's not
 	fractal->zoom = 150;
-	fractal->offset_x = -1.21;
-	fractal->offset_y = -1.21;
+	fractal->offset_x = -2.5;
+	fractal->offset_y = -2.0;
 	fractal->pic = NULL;
 	fractal->tex = NULL;
 	fractal->mlx = NULL;
 	fractal->width = 800;
 	fractal->height = 600;
 	fractal->color_schemes[0] = 0xD8BFD8;
-    fractal->color_schemes[1] = 0xFF4500;
-    fractal->color_schemes[2] = 0x4682B4;
-    fractal->color_schemes[3] = 0x32CD32;
-    fractal->color_schemes[4] = 0xFFD700;
-    fractal->current_scheme = 0;
+	fractal->color_schemes[1] = 0xFF4500;
+	fractal->color_schemes[2] = 0x4682B4;
+	fractal->color_schemes[3] = 0x32CD32;
+	fractal->color_schemes[4] = 0xFFD700;
+	fractal->current_scheme = 0;
 }
 
 // Choose fractal type depending on argv[1]
-void	ft_which_fractal(t_fractal *fractal, char *type, t_fractal c)
+void	ft_which_fractal(t_fractal *fractal, char *type, int flag)
 {
-	// How do I fix this bs ??
-	if (!c.real)	
-		c.real = -0.7;
-	if (c.imag)	
-		c.imag = 0.27015;
 	if (ft_strncmp(type, "m", 1) == 0)
 		ft_draw_mandelbrot(fractal);
 	else if (ft_strncmp(type, "j", 1) == 0)
-		ft_draw_julia(fractal, c);
+		ft_draw_julia(fractal, flag);
 	else if (ft_strncmp(type, "b", 1) == 0)
 		ft_draw_burningship(fractal);
 	else
