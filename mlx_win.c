@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 04:20:39 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 21:47:00 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 21:50:16 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,18 @@ void	ft_mouse(mouse_key_t mouse, action_t action, modifier_key_t mod,
 	int32_t		m_x;
 	int32_t		m_y;
 
-	(void)action; // Ignore action
-	(void)mod;    // Ignore mod
+	(void)action;
+	(void)mod;
+	(void)mouse;
 	fractal = (t_fractal *)param;
 	mlx_get_mouse_pos(fractal->mlx, &m_x, &m_y);
-	// Convert mouse coordinates to relative positions
 	m_x = (m_x / fractal->width);
 	m_y = (m_y / fractal->height);
-	if (mouse == 4) // Scroll up
-	{
-		fractal->zoom *= 1.4;
-		fractal->offset_x = (m_x - 0.5) * ((-2.5 - 1.5) / fractal->zoom)
-			+ fractal->offset_x;
-		fractal->offset_y = (m_y - 0.5) * ((1.5 - -1.5) / fractal->zoom)
-			+ fractal->offset_y;
-	}
-	else if (mouse == 5) // Scroll down
-	{
-		fractal->zoom /= 1.4;
-		fractal->offset_x = (m_x - 0.5) * ((-2.5 - 1.5) / fractal->zoom)
-			+ fractal->offset_x;
-		fractal->offset_y = (m_y - 0.5) * ((1.5 - -1.5) / fractal->zoom)
-			+ fractal->offset_y;
-	}
+	fractal->zoom *= 1.4;
+	fractal->offset_x = (m_x - 0.5) * ((-2.5 - 1.5) / fractal->zoom)
+		+ fractal->offset_x;
+	fractal->offset_y = (m_y - 0.5) * ((1.5 - -1.5) / fractal->zoom)
+		+ fractal->offset_y;
 	ft_which_fractal(fractal, fractal->name);
 }
 
@@ -102,7 +91,6 @@ void	ft_init_win(t_fractal *fractal, char *type, char *p1, char *p2)
 	fractal->mlx = mlx_init(fractal->width, fractal->height, "fract-ol", true);
 	if (!fractal->mlx)
 		ft_mlx_error();
-	// Get window size here and store it in size?
 	fractal->pic = mlx_new_image(fractal->mlx, fractal->width, fractal->height);
 	if (!fractal->pic)
 		ft_mlx_error();

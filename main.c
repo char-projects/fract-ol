@@ -6,28 +6,25 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 20:29:25 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 20:40:23 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 21:53:45 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-// Done
 void	ft_exit_fractal(t_fractal *fractal)
 {
 	mlx_delete_image(fractal->mlx, fractal->pic);
 	mlx_terminate(fractal->mlx);
 	free(fractal);
 	exit(1);
-	
 }
 
-// Done
 void	ft_init_fractal(t_fractal *fractal)
 {
-	fractal->real = 0;
-	fractal->imag = 0;
-	fractal->color = 0xD8BFD8; // Should be orange but it's not
+	fractal->r = 0;
+	fractal->i = 0;
+	fractal->color = 0xD8BFD8;
 	fractal->zoom = 150;
 	fractal->offset_x = -2.5;
 	fractal->offset_y = -2.0;
@@ -38,7 +35,6 @@ void	ft_init_fractal(t_fractal *fractal)
 	fractal->max = 50;
 }
 
-// Choose fractal type depending on argv[1] - done
 void	ft_which_fractal(t_fractal *fractal, char *type)
 {
 	if (ft_strncmp(type, "m", 1) == 0)
@@ -61,7 +57,6 @@ void	ft_init_julia(t_fractal *fractal, char *param1, char *param2)
 	ft_draw_julia(fractal);
 }
 
-// Done
 int	main(int argc, char *argv[])
 {
 	t_fractal	*fractal;

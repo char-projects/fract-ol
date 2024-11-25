@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:42:08 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 21:29:09 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 21:55:05 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 
 typedef struct s_fractal
 {
-	double imag; // y axis
-	double real; // x axis
+	double		i; // y axis
+	double		r; // x axis
 	double		z_real;
 	double		z_imag;
 	double		c_real;
@@ -52,7 +52,8 @@ void			ft_init_julia(t_fractal *fractal, char *param1, char *param2);
 void			ft_keys(mlx_key_data_t keys, void *param);
 void			ft_init_win(t_fractal *fractal, char *type, char *p1, char *p2);
 void			ft_mlx_error(void);
-void			ft_mouse(mouse_key_t mouse,  action_t action,  modifier_key_t mod,  void *param);
+void			ft_mouse(mouse_key_t mouse, action_t action, modifier_key_t mod,
+					void *param);
 void			ft_resize_win(int32_t width, int32_t height, void *param);
 
 // Draw fractals

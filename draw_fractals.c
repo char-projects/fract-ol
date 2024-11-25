@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 14:43:22 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 20:48:44 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/25 21:55:22 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	ft_zoom(t_fractal *fractal, int x, int y, int zoom)
 {
-	double		scale;
+	double	scale;
 
 	scale = 1.5;
 	if (zoom == 1)
