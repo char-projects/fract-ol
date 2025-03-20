@@ -6,11 +6,55 @@
    <img src="https://github.com/user-attachments/assets/d08b787a-87a7-4966-8f46-f5e09b702015" height="300">
 </div>
 
+## 📌 Features
 
-## Features
+<li>Multiple fractals: Mandelbrot, Julia, BurningShip</li>
+<li>Increase and decrease max iteration for shape calculation</li>
+<li>Zoom and unzoom</li>
+<li>Move around with the arrow keys or W, A, S, D</li>
+<li>Different color patterns</li>
 
-- Multiple fractals: Mandelbrot, Julia, BurningShip
-- Increase and decrease max iteration for shape calculation
-- Zoom and unzoom
-- Move around with the arrow keys or W, A, S, D
-- Different color patterns
+
+## 🛠 Installation
+
+Clone the repository, cd into it, then run:
+```
+make
+```
+This will generate the fractol executable.
+
+## 🚀 Usage
+
+Run the program with one of the available fractals:
+```
+./fractol mandelbrot
+```
+```
+./fractol julia
+```
+```
+./fractol burningship
+```
+For the Julia set, you can specify custom parameters:
+
+./fractol julia <real_part> <imaginary_part>
+
+Example:
+
+./fractol julia -0.8 0.156
+
+## 🎮 Controls
+
+| Action                | Key               |
+|----------------------|-------------------|
+| Move Up              | `W` / `↑`         |
+| Move Down            | `S` / `↓`         |
+| Move Left            | `A` / `←`         |
+| Move Right           | `D` / `→`         |
+| Zoom In              | Scroll Up / `+`   |
+| Zoom Out             | Scroll Down / `-` |
+| Increase Iterations  | `I`               |
+| Decrease Iterations  | `K`               |
+| Change Color Scheme  | `C`               |
+| Reset View           | `R`               |
+| Quit                 | `ESC`             |
