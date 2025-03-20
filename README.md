@@ -15,15 +15,10 @@
 <li>Different color patterns</li>
 
 
-## 🛠 Installation
-
-Clone the repository, cd into it, then run:
-```
-make
-```
-This will generate the fractol executable.
-
 ## 🚀 Usage
+
+Clone the repository, cd into it, then run ```make```.
+This will generate the fractol executable.
 
 Run the program with one of the available fractals:
 ```
